@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('username');
             $table->string('password');
+            $table->string('blocked_reason')->nullable();
             $table->timestamp('registered_at')->nullable();
             $table->timestamp('last_login_at')->nullable();
             $table->timestamps();
