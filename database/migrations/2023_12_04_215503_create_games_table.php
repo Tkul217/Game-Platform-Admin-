@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('slug')->unique();
             $table->foreignId('author_id')->constrained('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

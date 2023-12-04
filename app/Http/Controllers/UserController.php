@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Repositories\UserRepository;
 use App\Services\UserService;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -30,5 +32,19 @@ class UserController extends Controller
         return view('users.show', [
             'user' => $user,
         ]);
+    }
+
+    public function block(Request $request, User $user): RedirectResponse
+    {
+        $this->userService->blockUser($user, $request->get('reason'));
+
+        return redirect()->route('user.show');
+    }
+
+    public function unblock(User $user): RedirectResponse
+    {
+        $this->userService->unblockUser($user);
+
+        return redirect()->route('user.show');
     }
 }
