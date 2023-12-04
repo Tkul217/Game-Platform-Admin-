@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->timestamp('played_at');
             $table->integer('score');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

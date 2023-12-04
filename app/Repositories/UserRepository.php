@@ -2,15 +2,20 @@
 
 namespace App\Repositories;
 
-use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class AdminRepository
+class UserRepository
 {
     public function getAll(int $limit = 10): LengthAwarePaginator
     {
-        return Admin::query()
+        return User::query()
             ->orderBy('id', 'desc')
             ->paginate($limit);
+    }
+
+    public function getById(int $id): User
+    {
+        return User::findOrFail($id);
     }
 }
